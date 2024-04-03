@@ -14,7 +14,8 @@ const adapter = new MemorySessionStorage();
 const i18n = new I18n({
     defaultLocale: "uz",
     useSession: true,
-    directory: "telegram-bot/locales",
+    // directory: "telegram-bot/locales",
+    directory: "locales",
     globalTranslationContext(ctx) {
         return { first_name: ctx.from?.first_name ?? "" };
     },

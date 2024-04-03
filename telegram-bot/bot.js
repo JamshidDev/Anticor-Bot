@@ -22,7 +22,7 @@ const allow_updates = ["my_chat_member", "chat_member", "message", "callback_que
 
 
 
- const bot = new Bot(_TOKEN);
+ const bot = new Bot('6195186408:AAFh9FYhoJNJqtteYIx6tZ8rTccwq2vTD3U');
 
 
 
@@ -42,11 +42,7 @@ bot.filter(async (ctx)=> ctx.config.superAdmin).use(adminModule);
 
 
 
-bot.api.setWebhook(_WEBHOOK_URL, allow_updates).then((res)=>{
-    console.log(`Webhook bot set to ${_WEBHOOK_URL}`);
-}).catch((error)=>{
-    console.log(error)
-});
+
 
 
 bot.catch((err) => {
@@ -55,6 +51,12 @@ bot.catch((err) => {
 });
 
 let token = _TOKEN;
+// bot.api.setWebhook(_WEBHOOK_URL, allow_updates).then((res)=>{
+//     console.log(`Webhook bot set to ${_WEBHOOK_URL}`);
+// }).catch((error)=>{
+//     console.log(error)
+// });
+// export {bot, token};
 
-export {bot, token};
+bot.start(allow_updates)
 

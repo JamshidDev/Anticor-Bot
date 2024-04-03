@@ -9,7 +9,7 @@ const bot = new Composer();
 
 bot.use(async (ctx, next)=>{
     const superAdminTelegramIdList = [1038293334];
-    const overwriteCommandsList = [ctx.t('cancel_action_msg')];
+    const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text')];
     if (overwriteCommandsList.includes(ctx.message?.text)) {
         const stats = await ctx.conversation.active();
         for (let key of Object.keys(stats)) {
