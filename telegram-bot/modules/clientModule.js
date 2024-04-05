@@ -6,7 +6,7 @@ import appealController from "../controllers/appealController.js";
 import userControllers from "../controllers/userControllers.js";
 import "../config/mongodb.js"
 import Docxtemplater from "docxtemplater"
-import PizZip from "PizZip"
+import PizZip from "pizzip"
 import path from "path"
 import fs from 'fs'
 import { fileURLToPath } from 'url';
