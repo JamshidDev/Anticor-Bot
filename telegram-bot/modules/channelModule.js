@@ -39,7 +39,7 @@ bot.on("my_chat_member", async (ctx) => {
                 firstname:ctx.from.first_name,
                 lastname:ctx.from?.last_name,
                 username:ctx.from?.username,
-                languageCode:ctx.from.language_code,
+                languageCode:null,
             }
             await userControllers.store(data)
         }

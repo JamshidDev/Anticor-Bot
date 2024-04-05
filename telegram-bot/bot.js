@@ -12,8 +12,6 @@ import overwriteCommandsModule from "./modules/overwriteCommandsModule.js";
 
 
 
-
-
 let _TOKEN = process.env.BOT_TOKEN;
 let _DOMAIN = process.env.DOMAIN_URL;
 let _WEBHOOK_URL = `${_DOMAIN}/${_TOKEN}`;
@@ -22,7 +20,7 @@ const allow_updates = ["my_chat_member", "chat_member", "message", "callback_que
 
 
 
- const bot = new Bot('6195186408:AAFh9FYhoJNJqtteYIx6tZ8rTccwq2vTD3U');
+ const bot = new Bot(_TOKEN);
 
 
 
@@ -47,7 +45,9 @@ bot.filter(async (ctx)=> ctx.config.superAdmin).use(adminModule);
 
 bot.catch((err) => {
     const ctx = err.ctx;
+    const e = err.error;
     console.error(`Error while handling update ${ctx.update.update_id}:`);
+    console.log(e)
 });
 
 let token = _TOKEN;

@@ -1,15 +1,22 @@
 
-import { Composer } from "grammy"
+import {Composer, session} from "grammy"
 
 
 const bot = new Composer();
 
 
+bot.use(async (ctx, next)=>{
+    let lang = await ctx.session.session_db.language_code || 'uz';
+    await ctx.i18n.setLocale(lang);
+    await next();
+})
+
 
 
 bot.use(async (ctx, next)=>{
-    const superAdminTelegramIdList = [1038293334];
-    const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text')];
+    const superAdminTelegramIdList = [];
+    const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text'), '/start', '/changelang'];
+    console.log(overwriteCommandsList.includes(ctx.message?.text))
     if (overwriteCommandsList.includes(ctx.message?.text)) {
         const stats = await ctx.conversation.active();
         for (let key of Object.keys(stats)) {
@@ -22,6 +29,9 @@ bot.use(async (ctx, next)=>{
     }
    await next();
 })
+
+
+
 
 
 
