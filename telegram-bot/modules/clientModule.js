@@ -398,12 +398,19 @@ const timeFormatterToUzb =(time)=>{
 const checkWorkTime = ()=>{
     let time = new Date();
     let hour = moment(time).tz(timezone).format('HH');
+    let minute = moment(time).tz(timezone).format('mm');
     let weekDay = new Date(time).getDay();
     let date = moment(time).tz(timezone).format('YYYY-MM-DD');
     // if(9<hour && hour<18){
     //     return true
     // }
-    console.log(weekDay)
+     return `
+Hafta kuni: ${weekDay}       
+Sana: ${date} 
+Soat: ${hour}       
+Minut: ${minute}       
+   
+     `
 
 }
 
@@ -489,7 +496,6 @@ const language_changing_menu = new Menu("language_changing_menu")
     })
 pm.use(language_changing_menu)
 pm.command('start', async (ctx)=>{
-    console.log(hears("appeal_btn_text"))
     await ctx.conversation.enter("main_menu");
 })
 
@@ -503,7 +509,10 @@ pm.command('changelang', async (ctx)=>{
 
 
 bot.command('checktime', async(ctx)=>{
-    checkWorkTime();
+    let text =checkWorkTime();
+    await ctx.reply(text, {
+        parse_mode:"HTML"
+    })
 })
 
 
