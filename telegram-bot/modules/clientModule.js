@@ -19,7 +19,7 @@ const bot = new Composer();
 
 const pm = bot.chatType("private");
 
-
+const WORK_TIME = 'AUTO' // AUTO; ON; OFF;
 
 
 pm.use(createConversation(hidden_visible_conversation))
@@ -401,17 +401,14 @@ const checkWorkTime = ()=>{
     let minute = moment(time).tz(timezone).format('mm');
     let weekDay = new Date(time).getDay();
     let date = moment(time).tz(timezone).format('YYYY-MM-DD');
-    // if(9<hour && hour<18){
-    //     return true
-    // }
-     return `
-Hafta kuni: ${weekDay}       
-Sana: ${date} 
-Soat: ${hour}       
-Minut: ${minute}       
-   
-     `
-
+    if(WORK_TIME === 'OFF'){
+        return  false;
+    }else if(WORK_TIME === 'ON'){
+        return  true;
+    }else{
+        let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<=9 || hour>=18);
+        return  !autoCheckWorkTime
+    }
 }
 
 
@@ -509,10 +506,8 @@ pm.command('changelang', async (ctx)=>{
 
 
 bot.command('checktime', async(ctx)=>{
-    let text =checkWorkTime();
-    await ctx.reply(text, {
-        parse_mode:"HTML"
-    })
+    console.log(checkWorkTime());
+
 })
 
 

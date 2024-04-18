@@ -1,9 +1,11 @@
 
-import {Composer, session} from "grammy"
+import {Composer, Keyboard, session} from "grammy"
 import userControllers from "../controllers/userControllers.js";
+import moment from "moment-timezone";
+const timezone = 'Asia/Tashkent';
 
 const bot = new Composer();
-
+const WORK_TIME = 'AUTO' // AUTO; ON; OFF;
 
 bot.use(async (ctx, next)=>{
     let lang = await ctx.session.session_db.language_code
@@ -34,6 +36,37 @@ bot.use(async (ctx, next)=>{
         superAdmin: superAdminTelegramIdList.includes(ctx.from?.id)
     }
    await next();
+})
+
+
+
+const checkWorkTime = ()=>{
+    let time = new Date();
+    let hour = moment(time).tz(timezone).format('HH');
+    let minute = moment(time).tz(timezone).format('mm');
+    let weekDay = new Date(time).getDay();
+    let date = moment(time).tz(timezone).format('YYYY-MM-DD');
+    if(WORK_TIME === 'OFF'){
+        return  false;
+    }else if(WORK_TIME === 'ON'){
+        return  true;
+    }else{
+        let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<=9 || hour>=18);
+        return  !autoCheckWorkTime
+    }
+}
+
+
+bot.use(async (ctx, next)=>{
+    let workTime = checkWorkTime();
+    if(!workTime){
+        await ctx.reply(ctx.t("bot-work-time-text"), {
+            parse_mode:"HTML",
+            reply_markup:new Keyboard()
+                .text("🔒")
+                .resized()
+        })
+    }
 })
 
 

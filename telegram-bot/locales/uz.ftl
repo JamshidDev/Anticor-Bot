@@ -58,6 +58,11 @@ success-change-language =Siz dastur tilini <b>🇺🇿 O'zbek tili</b>ga o'zgart
 
 request-phone-btn =📞 Telefon raqam
 
+bot-work-time-text = <b>⚠️ Ish vaqti yopildi</b> ⚠️
+    <i>Ushbu bot ish kunlari soat 09:00 dan 18:00 gacha vaqt davomida murojaatlarni qabul qilishga mo‘ljallangan</i>
+
+    <i>☝️ Murojat yuborish uchun ish vaqtida qayta /start buyrug'ini botga yuboring </i>
+
 
 
 
