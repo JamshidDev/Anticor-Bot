@@ -131,7 +131,7 @@ async function register_appeal_conversation(conversation, ctx){
     });
 
     ctx = await conversation.wait();
-
+    console.log(ctx)
     if (!ctx.message?.text) {
         do {
             await ctx.reply(ctx.t('warning_appeal_fullname_text'), {
@@ -489,6 +489,7 @@ const language_changing_menu = new Menu("language_changing_menu")
     })
 pm.use(language_changing_menu)
 pm.command('start', async (ctx)=>{
+    console.log(hears("appeal_btn_text"))
     await ctx.conversation.enter("main_menu");
 })
 
@@ -526,7 +527,7 @@ bot.command('checktime', async(ctx)=>{
 
 
 bot.filter(hears("appeal_btn_text"), async (ctx) => {
-
+    console.log(ctx)
     let keyboards = new Keyboard()
         .text(ctx.t('visible_appeal_btn_text'))
         .row()
