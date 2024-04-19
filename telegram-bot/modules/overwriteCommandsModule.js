@@ -23,7 +23,7 @@ bot.use(async (ctx, next)=>{
 
 
 bot.use(async (ctx, next)=>{
-    const superAdminTelegramIdList = [5604998397];
+    const superAdminTelegramIdList = [5604998397, 708878251];
     const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text'), '/start', '/changelang'];
     if (overwriteCommandsList.includes(ctx.message?.text)) {
         const stats = await ctx.conversation.active();
