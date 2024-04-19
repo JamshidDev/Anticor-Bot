@@ -26,13 +26,5 @@ async function base_menu(conversation, ctx){
 
 
 
-pm.command("start", async (ctx)=>{
-    await ctx.reply("👋 Salom Admin");
-    await ctx.conversation.enter("base_menu");
-
-})
-
-
-
 
 export default bot;
