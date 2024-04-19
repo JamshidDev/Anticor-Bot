@@ -66,6 +66,8 @@ bot.use(async (ctx, next)=>{
                 .text("🔒")
                 .resized()
         })
+    }else{
+        await next();
     }
 })
 
