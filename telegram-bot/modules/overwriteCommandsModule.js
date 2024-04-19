@@ -51,7 +51,7 @@ const checkWorkTime = ()=>{
     }else if(WORK_TIME === 'ON'){
         return  true;
     }else{
-        let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<=9 || hour>=18);
+        let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<9 || hour>=18);
         return  !autoCheckWorkTime
     }
 }
