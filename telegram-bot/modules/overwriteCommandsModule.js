@@ -141,4 +141,14 @@ Ish vati <b>[9:00 : 18:00]</b>
     })
 })
 
+bot.filter(async (ctx)=> ctx.config.superAdmin).hears("🤖 32432", async (ctx)=>{
+    WORK_TIME = 'AUTO'
+    await ctx.reply(`
+♻️ Ish vaqti botga topshirildi (🤖 AUTO)
+Ish kuni <b>[Dushanba : Juma]</b>
+Ish vati <b>[9:00 : 18:00]</b>
+    `,{
+        parse_mode:"HTML"
+    })
+})
 export default bot;
