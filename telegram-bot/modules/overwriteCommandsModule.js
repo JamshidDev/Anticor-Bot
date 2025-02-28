@@ -12,8 +12,7 @@ bot.use(async (ctx, next)=>{
     let lang = await ctx.session.session_db.language_code
     if(!lang){
         let user_data =await userControllers.getUserInfoById(ctx.from.id);
-        console.log(user_data)
-        lang = user_data.data.languageCode;
+        lang = user_data.data?.languageCode;
         ctx.session.session_db.language_code = lang;
     }
 
