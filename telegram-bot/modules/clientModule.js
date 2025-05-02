@@ -61,14 +61,14 @@ async function hidden_visible_conversation(conversation, ctx){
     });
 
     ctx = await conversation.wait();
-    let is_valid = !ctx.message?.document && !(ctx.message.text == ctx.t('change-appeal_next_btn_text'));
+    let is_valid = !ctx.message?.document && !(ctx.message.text === ctx.t('change-appeal_next_btn_text'));
     if (is_valid) {
         do {
             await ctx.reply(ctx.t('warning_appeal_file_text'), {
                 parse_mode: "HTML",
             });
             ctx = await conversation.wait();
-            is_valid = !ctx.message?.document && !(ctx.message.text == ctx.t('change-appeal_next_btn_text'));
+            is_valid = !ctx.message?.document && !(ctx.message.text === ctx.t('change-appeal_next_btn_text'));
         } while (is_valid);
     }
     let file_id = ctx.message?.document?.file_id;
@@ -131,7 +131,6 @@ async function register_appeal_conversation(conversation, ctx){
     });
 
     ctx = await conversation.wait();
-    console.log(ctx)
     if (!ctx.message?.text) {
         do {
             await ctx.reply(ctx.t('warning_appeal_fullname_text'), {
@@ -249,8 +248,9 @@ async function register_appeal_conversation(conversation, ctx){
             phone:data.phone,
             address:data.address,
         }
+        console.log(message_data)
 
-        await sendMessageAdmin(ctx,message_data);
+        // await sendMessageAdmin(ctx,message_data);
 
     }else{
         await ctx.reply(ctx.t('unknown_error'),{
@@ -395,22 +395,6 @@ const timeFormatterToUzb =(time)=>{
     return  moment(time).tz(timezone).format('YYYY-MM-DD HH:mm');
 }
 
-const checkWorkTime = ()=>{
-    let time = new Date();
-    let hour = moment(time).tz(timezone).format('HH');
-    let minute = moment(time).tz(timezone).format('mm');
-    let weekDay = new Date(time).getDay();
-    let date = moment(time).tz(timezone).format('YYYY-MM-DD');
-    if(WORK_TIME === 'OFF'){
-        return  false;
-    }else if(WORK_TIME === 'ON'){
-        return  true;
-    }else{
-        let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<=9 || hour>=18);
-        return  !autoCheckWorkTime
-    }
-}
-
 
 
 
@@ -505,10 +489,6 @@ pm.command('changelang', async (ctx)=>{
 })
 
 
-bot.command('checktime', async(ctx)=>{
-    console.log(checkWorkTime());
-
-})
 
 
 
@@ -531,7 +511,6 @@ bot.command('checktime', async(ctx)=>{
 
 
 bot.filter(hears("appeal_btn_text"), async (ctx) => {
-    console.log(ctx)
     let keyboards = new Keyboard()
         .text(ctx.t('visible_appeal_btn_text'))
         .row()

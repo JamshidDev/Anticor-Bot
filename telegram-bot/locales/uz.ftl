@@ -16,7 +16,10 @@ change-appeal_btn_text =🔴 Murojatni bekor qilish
 
 change-appeal_next_btn_text =➡️ Keyingisi
 
-exception_msg = Ushbu bot ish kunlari soat 09:00 dan 18:00 gacha vaqt davomida murojaatlarni qabul qilishga mo‘ljallangan
+exception_msg = ♻️ Ish kunlari soat 09:00 dan 18:00 gacha vaqt davomida murojaatlarni qabul qilishga mo‘ljallangan.
+    ⚠️ Dam olish kunlari yuborilgan murojaatlar keyingi ish kunida ko'rib chiqiladi.
+
+
 
 appeal_btn_text =📄 Murojaat yuborish
 

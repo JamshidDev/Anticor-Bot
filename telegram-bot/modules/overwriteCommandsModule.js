@@ -31,7 +31,6 @@ bot.use(async (ctx, next)=>{
             await ctx.conversation.exit(key);
         }
     }
-    console.log(ctx.from.language_code)
 
     ctx.config = {
         superAdmin: superAdminTelegramIdList.includes(ctx.from?.id)
@@ -44,14 +43,13 @@ bot.use(async (ctx, next)=>{
 const checkWorkTime = ()=>{
     let time = new Date();
     let hour = moment(time).tz(timezone).format('HH');
-    let minute = moment(time).tz(timezone).format('mm');
     let weekDay = new Date(time).getDay();
-    let date = moment(time).tz(timezone).format('YYYY-MM-DD');
     if(WORK_TIME === 'OFF'){
         return  false;
     }else if(WORK_TIME === 'ON'){
-        let autoCheckWorkTime =hour<9 || hour>=18;
-        return  !autoCheckWorkTime;
+        // let autoCheckWorkTime =hour<9 || hour>=18;
+        // return  !autoCheckWorkTime;
+        return  true
     }else{
         let autoCheckWorkTime = ([6,7].includes(weekDay) || hour<9 || hour>=18);
         return  !autoCheckWorkTime
@@ -134,8 +132,8 @@ bot.filter(async (ctx)=> ctx.config.superAdmin).hears("🤖 AUTO", async (ctx)=>
     WORK_TIME = 'AUTO'
     await ctx.reply(`
 ♻️ Ish vaqti botga topshirildi (🤖 AUTO)
-Ish kuni <b>[Dushanba : Juma]</b>
-Ish vati <b>[9:00 : 18:00]</b>
+Ish kuni <b>24/7</b>
+Ish vati <b>24/7</b>
     `,{
         parse_mode:"HTML"
     })
@@ -145,8 +143,8 @@ bot.filter(async (ctx)=> ctx.config.superAdmin).hears("🤖 32432", async (ctx)=
     WORK_TIME = 'AUTO'
     await ctx.reply(`
 ♻️ Ish vaqti botga topshirildi (🤖 AUTO)
-Ish kuni <b>[Dushanba : Juma]</b>
-Ish vati <b>[9:00 : 18:00]</b>
+Ish kuni <b>24/7</b>
+Ish vati <b>24/7</b>
     `,{
         parse_mode:"HTML"
     })
