@@ -17,7 +17,7 @@ change-appeal_btn_text =🔴 Murojatni bekor qilish
 change-appeal_next_btn_text =➡️ Keyingisi
 
 exception_msg = ♻️ Ish kunlari soat 09:00 dan 18:00 gacha vaqt davomida murojaatlarni qabul qilishga mo‘ljallangan.
-    ⚠️ Dam olish kunlari yuborilgan murojaatlar keyingi ish kunida ko'rib chiqiladi.
+    ⚠️ Dam olish kunlari va ish vaqtidan tashqari vaqtlarda  yuborilgan murojaatlar keyingi ish kunida ko'rib chiqish uchun qabul qilinadi.
 
 
 
