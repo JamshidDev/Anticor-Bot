@@ -6,7 +6,7 @@ import adminModule from "./adminModule.js";
 const timezone = 'Asia/Tashkent';
 
 const bot = new Composer();
-var WORK_TIME = 'AUTO' // AUTO; ON; OFF;
+var WORK_TIME = 'ON' // AUTO; ON; OFF;
 
 bot.use(async (ctx, next)=>{
     let lang = await ctx.session.session_db.language_code

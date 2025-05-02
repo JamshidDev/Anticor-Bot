@@ -19,7 +19,6 @@ const bot = new Composer();
 
 const pm = bot.chatType("private");
 
-const WORK_TIME = 'AUTO' // AUTO; ON; OFF;
 
 
 pm.use(createConversation(hidden_visible_conversation))
@@ -250,7 +249,7 @@ async function register_appeal_conversation(conversation, ctx){
         }
         console.log(message_data)
 
-        // await sendMessageAdmin(ctx,message_data);
+        await sendMessageAdmin(ctx,message_data);
 
     }else{
         await ctx.reply(ctx.t('unknown_error'),{
