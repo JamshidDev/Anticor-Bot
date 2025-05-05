@@ -26,7 +26,6 @@ bot.use(async (ctx, next)=>{
 
 
 bot.use(async (ctx, next)=>{
-    console.log(SUPER_ADMINS)
     const superAdminTelegramIdList = SUPER_ADMINS
     const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text'), '/start', '/changelang'];
     if (overwriteCommandsList.includes(ctx.message?.text)) {
