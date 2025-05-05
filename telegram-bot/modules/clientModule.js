@@ -14,11 +14,15 @@ import { dirname } from 'path';
 import moment from 'moment-timezone'
 const timezone = 'Asia/Tashkent';
 const __dirname = dirname(fileURLToPath(import.meta.url));
+import dotenv from 'dotenv';
+dotenv.config()
+
+
 
 const bot = new Composer();
 
 const pm = bot.chatType("private");
-
+let _CHANNEL_ID = process.env.CHANNEL_ID;
 
 
 pm.use(createConversation(hidden_visible_conversation))
@@ -362,7 +366,8 @@ const sendMessageAdmin = async (ctx,data)=>{
 
     let res_data = createDocument(data);
     if(res_data.success){
-        let chat_id = -1002086725762;
+        // let chat_id = -1002086725762;
+        let chat_id = _CHANNEL_ID;
         await ctx.api.sendDocument(chat_id, res_data.file_path, {
             caption:`
 <b>📄 Murojat raqami</b>:${data.number} 
