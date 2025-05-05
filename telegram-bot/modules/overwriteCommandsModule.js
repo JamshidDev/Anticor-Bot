@@ -4,9 +4,12 @@ import userControllers from "../controllers/userControllers.js";
 import moment from "moment-timezone";
 import adminModule from "./adminModule.js";
 const timezone = 'Asia/Tashkent';
+import dotenv from 'dotenv';
+dotenv.config()
 
 const bot = new Composer();
-var WORK_TIME = 'ON' // AUTO; ON; OFF;
+var WORK_TIME = 'ON'
+let SUPER_ADMINS = process.env.SUPER_ADMINS?.split(',')
 
 bot.use(async (ctx, next)=>{
     let lang = await ctx.session.session_db.language_code
@@ -23,7 +26,8 @@ bot.use(async (ctx, next)=>{
 
 
 bot.use(async (ctx, next)=>{
-    const superAdminTelegramIdList = [5604998397, 708878251];
+    console.log(SUPER_ADMINS)
+    const superAdminTelegramIdList = SUPER_ADMINS
     const overwriteCommandsList = [ctx.t('cancel_action_msg'), ctx.t('change-appeal_btn_text'), '/start', '/changelang'];
     if (overwriteCommandsList.includes(ctx.message?.text)) {
         const stats = await ctx.conversation.active();
